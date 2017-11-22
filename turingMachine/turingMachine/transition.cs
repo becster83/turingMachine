@@ -172,7 +172,7 @@ namespace TuringMachine
                 while (!reader.EndOfStream && str.Length < 1)
                 {
                     str = reader.ReadLine();
-                    Console.WriteLine(str);
+                    //Console.WriteLine(str);
                     index++;
                 }
 
@@ -187,7 +187,7 @@ namespace TuringMachine
                         char headDirection;
                         int nextState;
 
-                        Console.WriteLine(str);
+                        //Console.WriteLine(str);
 
                         // transition format should be "1 1 2 r 0"
                         string[] temparr = str.Split(' ');
@@ -197,12 +197,13 @@ namespace TuringMachine
                         headDirection = char.Parse(temparr[3]);
                         nextState = Int32.Parse(temparr[4]);
 
+                        /*
                         Console.WriteLine("initialState: " + initialState);
                         Console.WriteLine("read: " + read);
                         Console.WriteLine("write: " + write);
                         Console.WriteLine("headDirection: " + headDirection);
                         Console.WriteLine("nextState: " + nextState);
-
+                        */
                         insertTransition(initialState, read, write, headDirection, nextState); // calling parent class method
 
                         if (reader.EndOfStream)

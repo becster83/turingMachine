@@ -28,22 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Tape2 = new System.Windows.Forms.FlowLayoutPanel();
             this.Tape1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btn_run = new System.Windows.Forms.Button();
             this.btn_transitions = new System.Windows.Forms.Button();
             this.txt_input = new System.Windows.Forms.TextBox();
             this.lbl_input = new System.Windows.Forms.Label();
             this.gb_setup = new System.Windows.Forms.GroupBox();
+            this.lbl_value = new System.Windows.Forms.Label();
             this.gb_setup.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // Tape2
-            // 
-            this.Tape2.Location = new System.Drawing.Point(21, 247);
-            this.Tape2.Name = "Tape2";
-            this.Tape2.Size = new System.Drawing.Size(852, 110);
-            this.Tape2.TabIndex = 2;
             // 
             // Tape1
             // 
@@ -82,6 +75,7 @@
             // 
             // lbl_input
             // 
+            this.lbl_input.AllowDrop = true;
             this.lbl_input.AutoSize = true;
             this.lbl_input.Location = new System.Drawing.Point(15, 28);
             this.lbl_input.Name = "lbl_input";
@@ -101,33 +95,42 @@
             this.gb_setup.TabStop = false;
             this.gb_setup.Text = "Setup";
             // 
+            // lbl_value
+            // 
+            this.lbl_value.AutoSize = true;
+            this.lbl_value.Location = new System.Drawing.Point(1071, 264);
+            this.lbl_value.Name = "lbl_value";
+            this.lbl_value.Size = new System.Drawing.Size(0, 13);
+            this.lbl_value.TabIndex = 9;
+            this.lbl_value.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1298, 392);
+            this.Controls.Add(this.lbl_value);
             this.Controls.Add(this.gb_setup);
             this.Controls.Add(this.btn_run);
             this.Controls.Add(this.Tape1);
-            this.Controls.Add(this.Tape2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.gb_setup.ResumeLayout(false);
             this.gb_setup.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.FlowLayoutPanel Tape2;
         private System.Windows.Forms.FlowLayoutPanel Tape1;
         private System.Windows.Forms.Button btn_run;
         private System.Windows.Forms.Button btn_transitions;
         private System.Windows.Forms.TextBox txt_input;
         private System.Windows.Forms.Label lbl_input;
         private System.Windows.Forms.GroupBox gb_setup;
+        private System.Windows.Forms.Label lbl_value;
     }
 }
 
