@@ -197,13 +197,6 @@ namespace TuringMachine
                         headDirection = char.Parse(temparr[3]);
                         nextState = Int32.Parse(temparr[4]);
 
-                        /*
-                        Console.WriteLine("initialState: " + initialState);
-                        Console.WriteLine("read: " + read);
-                        Console.WriteLine("write: " + write);
-                        Console.WriteLine("headDirection: " + headDirection);
-                        Console.WriteLine("nextState: " + nextState);
-                        */
                         insertTransition(initialState, read, write, headDirection, nextState); // calling parent class method
 
                         if (reader.EndOfStream)

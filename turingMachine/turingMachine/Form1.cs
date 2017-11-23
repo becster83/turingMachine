@@ -13,7 +13,7 @@ namespace TuringMachine
 {
     public partial class Form1 : Form
     {
-
+        
         public Form1()
         {
             InitializeComponent();
@@ -22,8 +22,25 @@ namespace TuringMachine
         private void Form1_Load(object sender, EventArgs e)
         {
 
+            foreach (Control ctrl in gb_setup.Controls)
+            {
+                if (ctrl is TextBox)
+                {
+                    TextBox tb = (TextBox)ctrl;
+                    tb.TextChanged += new EventHandler(tb_TextChanged);
+                }
+            }
+
         }
 
+        /// Enable the setup buttom only if the 2 textboxes are not empty
+        void tb_TextChanged(object sender, EventArgs e)
+        {
+            btn_transitions.Enabled = !string.IsNullOrWhiteSpace(txt_textfile.Text) && !string.IsNullOrWhiteSpace(txt_input.Text);
+        }
+
+        /// draws the tape according to the input
+        /// <param name="input"></param>
         private void createTape(string input)
         {
             int isize = 35;
@@ -43,14 +60,46 @@ namespace TuringMachine
                 label[i].Name = "n" + i;
                 label[i].Text = input.Substring(i);
                 Tape1.Controls.Add(label[i]);
+
+                label[i].Click += new EventHandler(label_clickas);
             }
         }
+
+        //starting position on tape is selected
+        void label_clickas(object sender, EventArgs e)
+        {
+             Label clickedLabel = sender as Label;
+
+            if (clickedLabel != null)
+            {
+                clickedLabel.BackColor = Color.Red;
+
+                /*
+                foreach (Control item in gb_setup.Controls)
+                {
+                    item.Enabled = false;
+                }
+                */
+
+                // foreach (var lbl in Controls.OfType<Label>())
+                /*
+                foreach (Control c in Tape1.Controls)
+                {
+                    if (c is UserControl1)
+                    {
+                        ((UserControl1)c).IsSelected = false;
+                    }
+                }
+                */  
+            }
+
+
+         }
 
         private void btn_run_Click(object sender, EventArgs e)
         {    
             MachineSimulator simulator = new MachineSimulator();
-            string FileName = "U:\\playground\\Repos\\turingMachine\\turingMachine\\turingMachine\\transitions.txt";
-            string summary = simulator.Run(FileName, 30, this);
+            string summary = simulator.Run(txt_textfile.Text.Trim(), 500, this);
         }
 
         public void setlabel(int index, char write)
@@ -61,7 +110,6 @@ namespace TuringMachine
             {
                 myLabel.BackColor = Color.LightGray;
                 myLabel.Text = write.ToString();
-     
             }
 
         }
@@ -81,13 +129,24 @@ namespace TuringMachine
 
         private void btn_transitions_Click(object sender, EventArgs e)
         {
-
-            createTape(txt_input.Text);
+            
+            createTape(txt_input.Text.Trim());
 
             //disable the contents of the setup
             foreach (Control item in gb_setup.Controls) {
-                item.Enabled = false;      
-            }            
+                item.Enabled = false;               
+            }
+
+            //setup is complete so can now run the machine.
+            btn_run.Visible = true;
+        }
+
+        private void btn_getTrans_Click(object sender, EventArgs e)
+        {
+            if (openTrans.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                txt_textfile.Text = openTrans.FileName;
+            }
         }
 
     }

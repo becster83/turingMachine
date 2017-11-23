@@ -41,12 +41,18 @@ namespace TuringMachine
                 Console.WriteLine("cs: " + tm.get_current_state());
                 Console.WriteLine("input: " + input);
 
+                Thread.Sleep(delay);
+
                 if (tmloader.findTransition(tm.get_current_state(), input, out output, out move, out n_state))
                 {
                     i_state = tm.get_current_state();
                     tm.set_current_state(n_state);
+
+                    Console.WriteLine("cs:" + tm.get_current_state() + " I:" + input + " o:" + output + " m:" + move + " ns:" + n_state);
                     //tm.setSlot(output);
-                    
+                    //perform transition on the slot
+                    tmform.setlabel(tm.get_index(), output);
+
                     if (move == 'l')
                         tm.move_left();
                     else
@@ -57,20 +63,12 @@ namespace TuringMachine
                 {
                     state_not_found = true;
                 }
-
-                Console.WriteLine("cs: " + tm.get_current_state());
-                Console.WriteLine("input: " + input);
-                Console.WriteLine("output: " + output);
-                Console.WriteLine("move: " + move);
-                Console.WriteLine("n_state: " + n_state);
-
+                
                 iteration++;
-
                 Thread.Sleep(delay);
-                tmform.setlabel(tm.get_index(), output);
                 //if (TuringTransitionCompleted != null)
-                  //  TuringTransitionCompleted(this, new EventArgs());
-               
+                //  TuringTransitionCompleted(this, new EventArgs());
+
 
                 //getch();
 
