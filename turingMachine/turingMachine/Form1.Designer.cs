@@ -38,6 +38,8 @@
             this.txt_textfile = new System.Windows.Forms.TextBox();
             this.lbl_value = new System.Windows.Forms.Label();
             this.openTrans = new System.Windows.Forms.OpenFileDialog();
+            this.txtIState = new System.Windows.Forms.TextBox();
+            this.lbl_initalState = new System.Windows.Forms.Label();
             this.gb_setup.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -90,6 +92,8 @@
             // 
             // gb_setup
             // 
+            this.gb_setup.Controls.Add(this.lbl_initalState);
+            this.gb_setup.Controls.Add(this.txtIState);
             this.gb_setup.Controls.Add(this.btn_getTrans);
             this.gb_setup.Controls.Add(this.txt_textfile);
             this.gb_setup.Controls.Add(this.lbl_input);
@@ -109,7 +113,7 @@
             this.btn_getTrans.Name = "btn_getTrans";
             this.btn_getTrans.Size = new System.Drawing.Size(117, 23);
             this.btn_getTrans.TabIndex = 0;
-            this.btn_getTrans.Text = "Load Transition";
+            this.btn_getTrans.Text = "Load Transitions";
             this.btn_getTrans.UseVisualStyleBackColor = true;
             this.btn_getTrans.Click += new System.EventHandler(this.btn_getTrans_Click);
             // 
@@ -119,7 +123,7 @@
             this.txt_textfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_textfile.Location = new System.Drawing.Point(161, 19);
             this.txt_textfile.Name = "txt_textfile";
-            this.txt_textfile.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.txt_textfile.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txt_textfile.Size = new System.Drawing.Size(156, 15);
             this.txt_textfile.TabIndex = 1;
             // 
@@ -135,6 +139,23 @@
             // openTrans
             // 
             this.openTrans.FileName = "file_trans";
+            // 
+            // txtIState
+            // 
+            this.txtIState.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtIState.Location = new System.Drawing.Point(161, 69);
+            this.txtIState.Name = "txtIState";
+            this.txtIState.Size = new System.Drawing.Size(67, 13);
+            this.txtIState.TabIndex = 8;
+            // 
+            // lbl_initalState
+            // 
+            this.lbl_initalState.AutoSize = true;
+            this.lbl_initalState.Location = new System.Drawing.Point(82, 69);
+            this.lbl_initalState.Name = "lbl_initalState";
+            this.lbl_initalState.Size = new System.Drawing.Size(57, 13);
+            this.lbl_initalState.TabIndex = 9;
+            this.lbl_initalState.Text = "Inital State";
             // 
             // Form1
             // 
@@ -167,6 +188,8 @@
         private System.Windows.Forms.OpenFileDialog openTrans;
         private System.Windows.Forms.Button btn_getTrans;
         private System.Windows.Forms.TextBox txt_textfile;
+        private System.Windows.Forms.TextBox txtIState;
+        private System.Windows.Forms.Label lbl_initalState;
     }
 }
 

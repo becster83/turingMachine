@@ -8,13 +8,6 @@ using System.IO;
 namespace TuringMachine
 {
 
-    public enum headDirection
-    {
-        Left = -1,
-        NoMove = 0,
-        Right = 1
-    }
-
     class transition
     {
         int _initialState;
@@ -31,7 +24,6 @@ namespace TuringMachine
             _write = '0';
             _headDirection = '0';
             _nextState = 0;
-
         }
 
         public int initialState
@@ -45,8 +37,7 @@ namespace TuringMachine
             get { return _read; }
             set { _read = value; }
         }
-
-   
+ 
         public char write
         {
             get { return _write; }
@@ -97,26 +88,20 @@ namespace TuringMachine
             turingProgram = new List<transition>();
         }
 
-
         // This method takes the 5 values as input and insert them into turing machine program tuple
         public void insertTransition(int initialState, char read, char write, char headDirection, int nextState)
         {
             turingProgram.Add(new transition(initialState, read, write, headDirection, nextState ));
         }
 
-        /// <summary>
         /// This method search through the turing machine program tuples to find a match for a given state and given input
-        /// </summary>
         /// <param name="initialState">input parameter</param>
         /// <param name="read">input parameter</param>
         /// <param name="write">Output Parameter</param>
         /// <param name="headDirection">Output Parameter</param>
         /// <param name="nextState">Output Parameter</param>
-        /// <returns></returns>
-        /// 
         public bool findTransition(int initialState, char read, out char write, out char headDirection, out int nextState)
-        {
-       
+        {      
             write = '0';
             headDirection = '0';
             nextState = 0;
@@ -135,7 +120,6 @@ namespace TuringMachine
                 }
             }
             return false;
-
         }
 
     };
@@ -162,7 +146,6 @@ namespace TuringMachine
             int index = 0;
             try
             {
-
                 FileStream fs1 = File.OpenRead(fileName);
                 StreamReader reader;
                 reader = new StreamReader(fs1);
@@ -172,13 +155,11 @@ namespace TuringMachine
                 while (!reader.EndOfStream && str.Length < 1)
                 {
                     str = reader.ReadLine();
-                    //Console.WriteLine(str);
                     index++;
                 }
 
                 while (index++ < 100) //Putting an upper limit on number of transitions to be read
                 {
-
                     if (!string.IsNullOrEmpty(str))
                     {
                         int initialState;
@@ -186,8 +167,6 @@ namespace TuringMachine
                         char write;
                         char headDirection;
                         int nextState;
-
-                        //Console.WriteLine(str);
 
                         // transition format should be "1 1 2 r 0"
                         string[] temparr = str.Split(' ');
@@ -203,13 +182,11 @@ namespace TuringMachine
                         { break; }
                         str = reader.ReadLine();
                     }
-
                 }
             }
             catch (Exception ex)
             {
                 throw new FormatException(string.Format("Error reading values at index: %d in input transition file: %s. Exception is: %s. Inner exception: %s ", index, fileName, ex.Message, ex.InnerException));
-
             }
         }
     }

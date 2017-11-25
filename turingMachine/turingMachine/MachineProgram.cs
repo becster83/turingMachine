@@ -13,9 +13,7 @@ namespace TuringMachine
         public const int maxLimit = 100;
         
         private bool _stack_overflow;
-
-        char _input;
-        int index;  ///index of slot on tape
+        int  _index;  ///index of slot on tape
         
         /// This propery store the state of whether turing machine is going beyond tape limits.. Unlike theoretical turing machine which 
         /// infinite tape, this machine has finite tape and hence need to take care of limits.
@@ -25,38 +23,26 @@ namespace TuringMachine
             set { _stack_overflow = value; }
         }
 
-        private char Input
+        public int tapeSlot
         {
-            get { return _input; }
-            set { _input = value; }
-
+            get { return _index; }
+            set { _index = value; }
         }
 
         /// Constructor
         public TuringTape()
         {
-            index = 0;
+            _index = 0;
             _stack_overflow = false;
          }
    
-        /// Set the string as array of characters at current input position
-        /// <param name="inp"></param>
-        public void setSlot(char inputSlot)
-        {
-            _input = inputSlot;   
-        }
-
-        public char getSlot()
-        {
-            return _input;
-        }
-     
         /// move turing machine to the left on tape/ decreament the index by 1
         public void move_left()
         {
-            index--;
-            if (index < 0)
+            _index--;
+            if (_index < 0)
             {
+                _index = 0; //reset it if any transitions after tape has ended.
                 Tape_overflow = true;
             }
         }
@@ -64,25 +50,13 @@ namespace TuringMachine
         /// move turing machine to the right on tape/ increament the index by 1
         public void move_right()
         {
-            index++;
-            if (index > maxLimit - 1)   //Checking the max limit
+            _index++;
+            if (_index > maxLimit - 1)   //Checking the max limit
             {
                 Tape_overflow = true;
             }
         }
 
-        /// Returns current index
-        public int get_index()
-        {
-            return index;
-        }
-
-        /// set current index
-        /// <param name="inp"></param>
-        public void set_index(int inp)
-        {
-            index = inp;
-        }
     }
 
     /// This class inherit TuringTape class and provide functionality of turing machine to remember the state. This also provide check to
@@ -95,7 +69,7 @@ namespace TuringMachine
         /// Constructor
         public TuringMachine()
         {
-            current_state = 1;
+            current_state = 0;
         }
 
         /// return current state
